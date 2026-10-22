@@ -14,3 +14,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.com.google.lens.oem_camera_package=com.android.camera \
     ro.miui.notch=1
+
+# isphal-V1-ndk (HyperOS) was built against graphics.common V6
+PRODUCT_PACKAGES += \
+    android.hardware.graphics.common-V6-ndk
