@@ -1,0 +1,16 @@
+PRODUCT_SOONG_NAMESPACES += vendor/xiaomi/duchamp-miuicamera
+
+PRODUCT_PACKAGES += \
+    MiuiCamera \
+    libcamera_algoup_jni.xiaomi \
+    libcamera_ispinterface_jni.xiaomi \
+    libcamera_mianode_jni.xiaomi
+
+PRODUCT_COPY_FILES += \
+    vendor/xiaomi/duchamp-miuicamera/configs/privapp-permissions-miuicamera.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-miuicamera.xml \
+    vendor/xiaomi/duchamp-miuicamera/configs/public.libraries-xiaomi.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries-xiaomi.txt \
+    vendor/xiaomi/duchamp-miuicamera/configs/miuicamera-hiddenapi-package-allowlist.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/miuicamera-hiddenapi-package-allowlist.xml
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.com.google.lens.oem_camera_package=com.android.camera \
+    ro.miui.notch=1
