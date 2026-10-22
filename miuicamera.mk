@@ -18,3 +18,9 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 # isphal-V1-ndk (HyperOS) was built against graphics.common V6
 PRODUCT_PACKAGES += \
     android.hardware.graphics.common-V6-ndk
+
+# Mark MiuiCamera as a privileged camera client so cameraserver accepts
+# vendor-only stream configurations (e.g. Y16 depth for portrait), which the
+# HAL only advertises in com.xiaomi.scaler.availableStreamConfigurations.
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    persist.vendor.camera.privapp.list=com.android.camera
