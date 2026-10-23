@@ -2,3 +2,5 @@
 # as platform_app_36; mirror stock hal_mtk_bgs_client(platform_app).
 hal_client_domain(platform_app_36, hal_mtk_bgs)
 hal_client_domain(platform_app_36, hal_mtk_isphal)
+# Stock: hal_misysimpl_client(platform_app) - MiuiCamera LUT saver
+hal_client_domain(platform_app_36, hal_misysimpl)

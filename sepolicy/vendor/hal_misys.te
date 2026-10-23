@@ -1,0 +1,37 @@
+# MiSys AIDL HALs (stock: vendor.xiaomi.hardware.misys.{common,core})
+hal_attribute(misysimpl)
+hal_attribute(misyscore)
+
+type hal_misysimpl_service, hal_service_type, protected_service, service_manager_type;
+type hal_misyscore_service, hal_service_type, protected_service, service_manager_type;
+
+hal_attribute_service(hal_misysimpl, hal_misysimpl_service)
+hal_attribute_service(hal_misyscore, hal_misyscore_service)
+
+binder_call(hal_misysimpl_client, hal_misysimpl_server)
+binder_call(hal_misysimpl_server, hal_misysimpl_client)
+binder_call(hal_misyscore_client, hal_misyscore_server)
+binder_call(hal_misyscore_server, hal_misyscore_client)
+
+# vendor.xiaomi.hardware.misys.common.service
+type hal_misysimpl_default, domain;
+type hal_misysimpl_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_misysimpl_default)
+hal_server_domain(hal_misysimpl_default, hal_misysimpl)
+hal_client_domain(hal_misysimpl_default, hal_misyscore)
+binder_use(hal_misysimpl_default)
+
+allow hal_misysimpl_default persist_data_file:dir { read getattr open search write add_name remove_name rmdir };
+allow hal_misysimpl_default persist_data_file:file { create read write getattr setattr open unlink };
+allow hal_misysimpl_default mnt_vendor_file:dir { read getattr open search };
+allow hal_misysimpl_default vendor_data_file:dir { write add_name };
+allow hal_misysimpl_default vendor_data_file:file { read write create getattr setattr open };
+allow hal_misysimpl_default proc_meminfo:file read;
+get_prop(hal_misysimpl_default, vendor_default_prop)
+
+# vendor.xiaomi.hardware.misys.core.service
+type hal_misyscore_default, domain;
+type hal_misyscore_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_misyscore_default)
+hal_server_domain(hal_misyscore_default, hal_misyscore)
+binder_use(hal_misyscore_default)

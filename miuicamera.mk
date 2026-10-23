@@ -24,3 +24,8 @@ PRODUCT_PACKAGES += \
 # HAL only advertises in com.xiaomi.scaler.availableStreamConfigurations.
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.vendor.camera.privapp.list=com.android.camera
+
+# MiSys
+PRODUCT_PACKAGES += \
+    vendor.xiaomi.hardware.misys.common.service \
+    vendor.xiaomi.hardware.misys.core.service

@@ -1,0 +1,2 @@
+/(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.misys\.common\.service    u:object_r:hal_misysimpl_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.misys\.core\.service      u:object_r:hal_misyscore_default_exec:s0

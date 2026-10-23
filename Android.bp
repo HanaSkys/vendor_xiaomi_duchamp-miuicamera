@@ -59,3 +59,55 @@ android_app_import {
     overrides: ["Aperture"],
     system_ext_specific: true,
 }
+
+// MiSys (vendor AIDL HALs used by MiuiCamera to write calibration data to persist)
+cc_prebuilt_library_shared {
+    name: "vendor.xiaomi.hardware.misys.common-V1-ndk",
+    owner: "xiaomi",
+    srcs: ["proprietary/vendor/lib64/vendor.xiaomi.hardware.misys.common-V1-ndk.so"],
+    compile_multilib: "64",
+    strip: { none: true },
+    check_elf_files: false,
+    vendor: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "vendor.xiaomi.hardware.misys.core-V1-ndk",
+    owner: "xiaomi",
+    srcs: ["proprietary/vendor/lib64/vendor.xiaomi.hardware.misys.core-V1-ndk.so"],
+    compile_multilib: "64",
+    strip: { none: true },
+    check_elf_files: false,
+    vendor: true,
+}
+
+cc_prebuilt_binary {
+    name: "vendor.xiaomi.hardware.misys.common.service",
+    owner: "xiaomi",
+    srcs: ["proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys.common.service"],
+    relative_install_path: "hw",
+    init_rc: ["configs/misys/vendor.xiaomi.hardware.misys.common-service.rc"],
+    vintf_fragments: ["configs/misys/vendor.xiaomi.hardware.misys.common.xml"],
+    required: [
+        "vendor.xiaomi.hardware.misys.common-V1-ndk",
+        "vendor.xiaomi.hardware.misys.core-V1-ndk",
+    ],
+    compile_multilib: "first",
+    strip: { none: true },
+    check_elf_files: false,
+    vendor: true,
+}
+
+cc_prebuilt_binary {
+    name: "vendor.xiaomi.hardware.misys.core.service",
+    owner: "xiaomi",
+    srcs: ["proprietary/vendor/bin/hw/vendor.xiaomi.hardware.misys.core.service"],
+    relative_install_path: "hw",
+    init_rc: ["configs/misys/vendor.xiaomi.hardware.misys.core-service.rc"],
+    vintf_fragments: ["configs/misys/vendor.xiaomi.hardware.misys.core.xml"],
+    required: ["vendor.xiaomi.hardware.misys.core-V1-ndk"],
+    compile_multilib: "first",
+    strip: { none: true },
+    check_elf_files: false,
+    vendor: true,
+}
